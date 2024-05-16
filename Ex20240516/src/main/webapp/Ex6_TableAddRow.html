@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Homework</title>
+<title>Ex6_TableAddRow</title>
 <style>
     table#table{
         width: 350px;
@@ -33,24 +33,6 @@ table#table tbody>tr>td:first-child{
     font-weight: bold;
 }
 
-form{
-    width: 170px;
-    border: 5px double #aaa;
-    background-color: #f0f0f0;
-    text-align: right;
-    padding: 15px;
-    margin-left: 50px;
-}
-
-form input{
-    width: 100px;
-    padding: 3px;
-    border-radius: 5px;
-    border: 1px solid black;
-    margin-top: 2px;
-    margin-bottom: 2px;
-}
-
 
 </style>
 </head>
@@ -60,13 +42,6 @@ form input{
             <h2>테이블 행 추가</h2>
         </header>
         <div>
-            <form action="" method="post">
-                <label for="s_name">이름: </label>
-                <input type="text" name="m_name" id="s_name" />
-                <br/>
-                <label for="s_phone">연락처: </label>
-                <input type="text" name="m _phone" id="s_phone" />
-            </form>
             <table id="table">
                 <caption>행 추가 테이블</caption>
                 <colgroup>
@@ -98,39 +73,19 @@ form input{
 
 
     <script>
-        let idx = 1;
+        let idx = 995;
         // let exe = function() {}
         function exe(){
             // 행을 추가한다는 것은 tr태그를 만들어서 tbody에 넣어주면 된다.
-            let s_name = document.getElementById("s_name");
-            let s_phone = document.getElementById("s_phone");
-
-            name = s_name.value.trim();
-            phone = s_phone.value.trim();
-
-            if(name == "" || name.length == 0){
-                    alert("이름을 입력해주세요.");
-                    s_name.value = ""; // 청소
-                    s_name.focus();
-
-                    return; //제어권 반환
-                }
-
-            if(phone == "" || phone.length == 0){
-                    alert("연락처를 입력해주세요.");
-                    s_phone.value = ""; // 청소
-                    s_phone.focus();
-
-                    return; //제어권 반환
-                }
+            
 
             // tr에 들어갈 td를 3개 만든다.
             let td1 = document.createElement("td"); //<td></td>
             td1.innerHTML = idx;
             let td2 = document.createElement("td"); //<td></td>
-            td2.innerHTML = name;
+            td2.innerHTML = "마루치";
             let td3 = document.createElement("td"); //<td></td>
-            td3.innerHTML = phone;
+            td3.innerHTML = "010-0000-"+Math.floor(idx/1000)+Math.floor((idx%1000)/100)+Math.floor((idx%100)/10)+(idx%10);
             
             idx++;
 
