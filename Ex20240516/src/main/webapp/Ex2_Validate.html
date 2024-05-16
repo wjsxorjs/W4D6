@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ex1_Validate</title>
+<style>
+    form{
+        margin: 15px;
+    }
+
+    button[type="button"]{
+        margin: 10px;
+    }
+</style>
+</head>
+<body>
+    <form action="#" method="post"> 
+        <label for="s_age">나이</label>
+        <input type="text" id="s_age" name="m_id"/>
+        <br/>
+        <button type="button" onclick="test()">확인</button>
+    </form>
+
+
+    <script>
+        function test(){
+            // 17 청소년/ 27 20대 / 37 30대 / 40이상 어르신?
+
+            let s_age = document.getElementById("s_age");
+            let s_age_value = s_age.value.trim();
+            if(s_age_value=="" || s_age_value.length == 0){
+                alert("나이를 입력해주세요.");
+                s_age.value = "";
+                s_age.focus();
+
+                return;
+
+            }
+            if(!isNaN(s_age_value)){ // isNaN : is Not a Number
+                //숫자인 경우
+                s_age_value = parseInt(s_age_value);
+
+                if(s_age_value>=40){
+                    alert("어르신");
+                } else if(s_age_value >=30){
+                    alert("30대");
+                } else if(s_age_value >= 20){
+                    alert("20대");
+                } else {
+                    alert("청소년");
+                }
+            } else{
+                if(s_age_value="" || s_age_value.length == 0){
+                    alert("나이를 입력해주세요.");
+                    s_age.value = "";
+                    s_age.focus();
+
+                    return;
+                    
+                } else {
+                    alert("숫자만 입력하세요.");
+                    s_age.value = "";
+                    s_age.focus();
+
+                    return;
+                }
+            }
+
+            
+        }
+    </script>
+</body>
+</html>
