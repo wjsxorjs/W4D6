@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ex8_TableAddSubRow</title>
+<style>
+    table#table{
+        width: 350px;
+        border-collapse: collapse;
+    }
+table#table th, table#table td{
+    border: 1px solid #dedede;
+    padding: 4px;
+}
+
+table#table caption{
+    text-indent: -9999px;
+}
+
+/* table 중 아이디가 table인 요소의 thead안에 있는
+tr들 중 첫번째 tr만 선택하여 선을 없애고, 오른쪽 맞춤을 설정하라. */
+
+table#table thead>tr:first-child td{
+    border: none;
+    text-align: right;
+}
+
+table#table tbody>tr>td{
+    text-align: center;
+}
+
+table#table tbody>tr>td:first-child{
+    font-weight: bold;
+}
+
+form{
+    width: 170px;
+    border: 5px double #aaa;
+    background-color: #f0f0f0;
+    text-align: right;
+    padding: 15px;
+    margin-left: 50px;
+}
+
+form input{
+    width: 100px;
+    padding: 3px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+
+</style>
+</head>
+<body>
+    <article>
+        <header>
+            <h2>테이블 행 추가</h2>
+        </header>
+        <div>
+            <form action="" method="post">
+                <label for="s_name">이름: </label>
+                <input type="text" name="m_name" id="s_name" />
+                <br/>
+                <label for="s_phone">연락처: </label>
+                <input type="text" name="m _phone" id="s_phone" />
+            </form>
+            <table id="table">
+                <caption>행 추가 테이블</caption>
+                <colgroup>
+                    <col width="70px"/>
+                    <col width="*"/>
+                    <col width="120px"/>
+                    <col width = 80px>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <td colspan="3">
+                            <button type="button" onclick="exe()">행 추가</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>번호</th>
+                        <th>이름</th>
+                        <th>연락처</th>
+                        <th>삭제</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </article>
+
+
+
+
+
+    <script>
+        let idx = 1;
+        let table = document.getElementById("table");
+        // let exe = function() {}
+        function exe(){
+            // 행을 추가한다는 것은 tr태그를 만들어서 tbody에 넣어주면 된다.
+            let s_name = document.getElementById("s_name");
+            let s_phone = document.getElementById("s_phone");
+
+            name = s_name.value.trim();
+            phone = s_phone.value.trim();
+
+            if(name == "" || name.length == 0){
+                    alert("이름을 입력해주세요.");
+                    s_name.value = ""; // 청소
+                    s_name.focus();
+
+                    return; //제어권 반환
+                }
+
+            if(phone == "" || phone.length == 0){
+                    alert("연락처를 입력해주세요.");
+                    s_phone.value = ""; // 청소
+                    s_phone.focus();
+
+                    return; //제어권 반환
+                }
+
+            // tr에 들어갈 td를 3개 만든다.
+            let td1 = document.createElement("td"); //<td></td>
+            td1.innerHTML = idx;
+            let td2 = document.createElement("td"); //<td></td>
+            td2.innerHTML = name;
+            let td3 = document.createElement("td"); //<td></td>
+            td3.innerHTML = phone;
+            let td4 = document.createElement("td"); //<td></td>
+            
+
+            let bt = document.createElement("button");
+            bt.type = "button";
+            bt.id = "bt"+idx;
+            bt.innerHTML = "삭제";
+            //버튼을 클릭했을 때 처리되는 이벤트
+            bt.onclick = function () {
+                // [삭제]버튼을 클릭했을 때 처리되는 이벤트
+
+                // table에 저장된 행번호를 얻어낸다.
+                // 얻어낸 행번호를 table로부터 삭제
+                table.deleteRow(table.rowNum);
+                
+
+                
+            };
+
+            td4.appendChild(bt);
+            
+
+            let tr = document.createElement("tr"); // <tr></tr>
+            //tr에 td들을 자식으로 추가!!
+
+            tr.style.textAlign = "center";
+
+            tr.onmouseover = function () {
+                // tr에 마우스가 올라왔을 때 수행하는 곳
+                
+                // table객체에 rowNum이라는 이름으로
+                // 현재 행의 번호를 저장한다.
+                table.rowNum = this.rowIndex;
+                
+            };
+
+
+
+
+                                //<tr>
+            tr.appendChild(td1);//  <td>1</td>
+            tr.appendChild(td2);//  <td>마루치</td>
+            tr.appendChild(td3);//  <td>010-0000-0001</td>
+            tr.appendChild(td4);//  <td>삭제버튼</td>
+                                //</tr>
+
+            let tbody = table.children[3];
+            // 검색된 tbody에 생성해 두었던 tr을 추가!
+            tbody.appendChild(tr);
+            idx++;
+        }
+    </script>
+</body>
+</html>
