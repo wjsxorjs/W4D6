@@ -8,8 +8,29 @@
         width: 350px;
         height: 400px;
         padding: 15px;
-        border: 1px solid rgb(0,0,255);
+        border: 5px double rgb(0,0,255);
     }
+
+    button[type="button"]{
+        border-radius: 5px;
+        border: 2px solid rgb(122, 122, 122);
+    }
+
+    button[type="button"]:hover{
+        border: 2px solid rgb(100, 100, 100);
+        background: rgb(200, 200, 200);
+    }
+
+    button[type="button"]:active{
+        border: 2px solid rgb(80, 80, 80);
+        background: rgb(150, 150, 150);
+    }
+
+
+
+
+
+
 </style>
 </head>
 <body>
@@ -29,7 +50,7 @@
     <script>
 
         function ex(dan){ 
-            alert(dan+"단");        // 경고창
+            // alert(dan+"단");        // 경고창
             console.log(dan+"단");  // 개발자모드의 콘솔창에서 확인됨
 
             //현재문서(document)에 존재하는 요소(태그)를 검색하는 방법
