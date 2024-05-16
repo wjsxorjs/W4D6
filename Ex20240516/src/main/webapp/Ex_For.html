@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ex_For</title>
+<style>
+    #box{
+        width: 350px;
+        height: 400px;
+        padding: 15px;
+        border: 1px solid rgb(0,0,255);
+    }
+</style>
+</head>
+<body>
+    <button type="button" onclick="ex(2)">2단</button>
+    <button type="button" onclick="ex(3)">3단</button>
+    <button type="button" onclick="ex(4)">4단</button>
+    <button type="button" onclick="ex(5)">5단</button>
+    <button type="button" onclick="ex(6)">6단</button>
+    <button type="button" onclick="ex(7)">7단</button>
+    <button type="button" onclick="ex(8)">8단</button>
+    <button type="button" onclick="ex(9)">9단</button>
+    <br/><br/>
+    <div id="box">
+
+    </div>
+
+    <script>
+
+        function ex(dan){ 
+            alert(dan+"단");        // 경고창
+            console.log(dan+"단");  // 개발자모드의 콘솔창에서 확인됨
+
+            //현재문서(document)에 존재하는 요소(태그)를 검색하는 방법
+            let box = document.getElementById("box"); // id로 검색
+            let str = "<strong>"+dan+"단</strong><br/>";
+            str += "=========<br/>";
+            for(let i=1;i<10;i++){
+                str += (""+dan+"X"+i+"= "+(dan*i)+"<br/>");
+            }
+            box.innerHTML = str;
+        }
+    </script>
+</body>
+</html>
